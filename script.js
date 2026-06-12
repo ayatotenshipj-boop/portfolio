@@ -86,7 +86,7 @@
 (function(){
   var bgm=document.getElementById('bgm'),mt=document.getElementById('music-toggle');
   if(!bgm||!mt)return;
-  var TARGET=0.45,started=false,fadeTimer=null;
+  var TARGET=0.18,started=false,fadeTimer=null;
   function ramp(from,to,ms,done){
     var t0=performance.now();
     (function step(now){
@@ -102,9 +102,9 @@
     bgm.play()
       .then(function(){
         mt.classList.add('playing');
-        ramp(0,TARGET,3000);
+        ramp(0,TARGET,4000);
         clearTimeout(fadeTimer);
-        fadeTimer=setTimeout(function(){ramp(TARGET,0,3000,function(){bgm.pause();mt.classList.remove('playing');});},35000);
+        fadeTimer=setTimeout(function(){ramp(TARGET,0,3000,function(){bgm.pause();mt.classList.remove('playing');});},38000);
       })
       .catch(function(){started=false;}); /* still blocked → retry next gesture */
   }
@@ -124,7 +124,6 @@
     var kick=function(e){
       if(e&&e.target&&e.target.closest&&e.target.closest('#music-toggle'))return; /* toggle handles itself */
       start();
-      if(started)['pointerdown','keydown','touchstart','scroll'].forEach(function(ev){removeEventListener(ev,kick);});
     };
     ['pointerdown','keydown','touchstart','scroll'].forEach(function(ev){addEventListener(ev,kick,{passive:true});});
   }
