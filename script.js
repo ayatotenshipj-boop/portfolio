@@ -99,13 +99,14 @@
     if(started||localStorage.getItem('bgm')==='off')return;
     started=true;
     bgm.currentTime=0;bgm.volume=0;
-    var p=bgm.play();
-    if(p&&p.catch)p.catch(function(){started=false;}); /* still blocked → retry next gesture */
-    if(!started)return;
-    mt.classList.add('playing');
-    ramp(0,TARGET,3000);
-    clearTimeout(fadeTimer);
-    fadeTimer=setTimeout(function(){ramp(TARGET,0,3000,function(){bgm.pause();mt.classList.remove('playing');});},35000);
+    bgm.play()
+      .then(function(){
+        mt.classList.add('playing');
+        ramp(0,TARGET,3000);
+        clearTimeout(fadeTimer);
+        fadeTimer=setTimeout(function(){ramp(TARGET,0,3000,function(){bgm.pause();mt.classList.remove('playing');});},35000);
+      })
+      .catch(function(){started=false;}); /* still blocked → retry next gesture */
   }
   function disable(){
     localStorage.setItem('bgm','off');
