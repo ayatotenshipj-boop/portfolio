@@ -8,25 +8,28 @@
 <meta name="author" content="Ayato">
 <meta name="robots" content="index,follow">
 <title>Ayato — Security Researcher</title>
-<!-- TODO: trocar https://exemplo.com pela URL real de deploy (crawlers querem URL absoluta) -->
-<link rel="canonical" href="https://exemplo.com/">
+<link rel="canonical" href="https://ayatotenshipj-boop.github.io/portfolio/">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://exemplo.com/">
+<meta property="og:url" content="https://ayatotenshipj-boop.github.io/portfolio/">
 <meta property="og:title" content="Ayato — Security Researcher">
 <meta property="og:description" content="Segurança ofensiva, pentesting e ferramentas próprias.">
-<meta property="og:image" content="https://exemplo.com/images/image1.jpg">
+<meta property="og:image" content="https://ayatotenshipj-boop.github.io/portfolio/images/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Ayato — Security Researcher">
 <meta name="twitter:description" content="Segurança ofensiva, pentesting e ferramentas próprias.">
-<meta name="twitter:image" content="https://exemplo.com/images/image1.jpg">
+<meta name="twitter:image" content="https://ayatotenshipj-boop.github.io/portfolio/images/og.jpg">
 <link rel="icon" type="image/jpeg" href="images/image5.jpg">
 <link rel="apple-touch-icon" href="images/image5.jpg">
+<link rel="preload" as="image" href="images/image1.webp" type="image/webp" fetchpriority="high">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Sora:wght@200;300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
+<noscript><style>.rv,.rv-l,.rv-r{opacity:1!important;transform:none!important}</style></noscript>
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Person","name":"Ayato","jobTitle":"Security Researcher","url":"https://exemplo.com/","sameAs":["https://github.com/ayatotenshipj-boop"]}
+{"@context":"https://schema.org","@type":"Person","name":"Ayato","jobTitle":"Security Researcher","url":"https://ayatotenshipj-boop.github.io/portfolio/","sameAs":["https://github.com/ayatotenshipj-boop"]}
 </script>
 </head>
 <body>
@@ -40,7 +43,7 @@
 <header>
 <nav id="nav" aria-label="Principal">
   <div class="logo">
-    <a class="logo-img" href="https://github.com/ayatotenshipj-boop" target="_blank" rel="noopener" aria-label="Perfil no GitHub"><img src="images/image2.jpg" alt="Ayato" loading="lazy"></a>
+    <a class="logo-img" href="https://github.com/ayatotenshipj-boop" target="_blank" rel="noopener" aria-label="Perfil no GitHub"><picture><source type="image/webp" srcset="images/image2.webp"><img src="images/image2.jpg" alt="Ayato" width="736" height="1074" loading="lazy" decoding="async"></picture></a>
     <a href="#home"><b>Ayato<span>_TENSHI</span></b></a>
   </div>
   <ul class="nav-links">
@@ -65,7 +68,7 @@
 <main>
 <!-- HERO -->
 <section class="hero" id="home">
-  <div class="hero-bg"><img class="edge-fade" src="images/image1.jpg" alt="" draggable="false"></div>
+  <div class="hero-bg"><picture><source type="image/webp" srcset="images/image1.webp"><img class="edge-fade" src="images/image1.jpg" alt="" width="735" height="1040" fetchpriority="high" decoding="async" draggable="false"></picture></div>
   <div class="shards"><i class="shard"></i><i class="shard"></i><i class="shard"></i><i class="shard"></i></div>
   <div class="hero-content">
     <div class="eyebrow">Security Researcher</div>
@@ -146,7 +149,7 @@
       <div class="pfp-wrap">
         <div class="pfp-halo"></div>
         <div class="pfp-glow"></div>
-        <img src="images/image2.jpg" alt="Ayato">
+        <picture><source type="image/webp" srcset="images/image2.webp"><img src="images/image2.jpg" alt="Ayato" width="736" height="1074" loading="lazy" decoding="async"></picture>
       </div>
       <div class="stats">
         <div class="chip"><strong>20</strong>anos</div>
@@ -206,7 +209,7 @@
     <line x1="33" y1="92" x2="48" y2="88" style="--len:16"/>
     <line x1="28" y1="48" x2="14" y2="44" style="--len:15"/>
   </svg>
-  <div class="skills-bg"><img class="edge-fade" src="images/image3.jpg" alt="" aria-hidden="true"></div>
+  <div class="skills-bg"><picture><source type="image/webp" srcset="images/image3.webp"><img class="edge-fade" src="images/image3.jpg" alt="" width="735" height="620" loading="lazy" decoding="async" aria-hidden="true"></picture></div>
   <div class="skills-inner">
     <div class="skills-head">
       <div class="label rv">Competências</div>
@@ -326,7 +329,7 @@
 </section>
 
 <!-- BANNER -->
-<div class="banner" aria-hidden="true"><img class="edge-fade" src="images/image4.jpg" alt="" loading="lazy"></div>
+<div class="banner" aria-hidden="true"><picture><source type="image/webp" srcset="images/image4.webp"><img class="edge-fade" src="images/image4.jpg" alt="" width="735" height="459" loading="lazy" decoding="async"></picture></div>
 
 <!-- CONTACT -->
 <section class="contact" id="contact">
@@ -359,7 +362,7 @@
 </footer>
 
 <!-- ambient music + discreet toggle -->
-<audio id="bgm" src="music.mp3" preload="auto"></audio>
+<audio id="bgm" src="music.mp3" preload="none"></audio>
 <button id="music-toggle" class="music-toggle" type="button" aria-label="Música ambiente" aria-pressed="true" title="Música ambiente">
   <svg class="ic-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path><path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path></svg>
   <svg class="ic-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line></svg>
