@@ -82,11 +82,11 @@
   ['about','skills','projects','contact'].forEach(function(id){var s=document.getElementById(id);if(s)spy.observe(s);});
 })();
 
-/* ambient music — fade in 0→target over 3s, play ~35s, fade out to 0 and stop. discreet toggle. */
+/* ambient music — fade in 0→target over 4s, play ~38s, fade out to 0 and stop. discreet toggle (per-session). */
 (function(){
   var bgm=document.getElementById('bgm'),mt=document.getElementById('music-toggle');
   if(!bgm||!mt)return;
-  var TARGET=0.18,started=false,fadeTimer=null;
+  var TARGET=0.18,started=false,muted=false,fadeTimer=null;
   function ramp(from,to,ms,done){
     var t0=performance.now();
     (function step(now){
@@ -95,36 +95,34 @@
       if(k<1)requestAnimationFrame(step);else if(done)done();
     })(performance.now());
   }
+  function onPlay(){
+    mt.classList.add('playing');
+    ramp(0,TARGET,4000);
+    clearTimeout(fadeTimer);
+    fadeTimer=setTimeout(function(){ramp(TARGET,0,3000,function(){bgm.pause();mt.classList.remove('playing');});},38000);
+  }
   function start(){
-    if(started||localStorage.getItem('bgm')==='off')return;
+    if(started||muted)return;
     started=true;
     bgm.currentTime=0;bgm.volume=0;
-    bgm.play()
-      .then(function(){
-        mt.classList.add('playing');
-        ramp(0,TARGET,4000);
-        clearTimeout(fadeTimer);
-        fadeTimer=setTimeout(function(){ramp(TARGET,0,3000,function(){bgm.pause();mt.classList.remove('playing');});},38000);
-      })
-      .catch(function(){started=false;}); /* still blocked → retry next gesture */
+    var p=bgm.play();
+    if(p&&p.then)p.then(onPlay).catch(function(){started=false;}); /* still blocked → retry next gesture */
+    else onPlay();
   }
   function disable(){
-    localStorage.setItem('bgm','off');
+    muted=true;
     mt.classList.add('off');mt.classList.remove('playing');mt.setAttribute('aria-pressed','false');
     clearTimeout(fadeTimer);bgm.pause();
   }
   function enable(){
-    localStorage.removeItem('bgm');
+    muted=false;
     mt.classList.remove('off');mt.setAttribute('aria-pressed','true');
     started=false;start();
   }
   mt.addEventListener('click',function(){mt.classList.contains('off')?enable():disable();});
-  if(localStorage.getItem('bgm')==='off'){mt.classList.add('off');mt.setAttribute('aria-pressed','false');}
-  else{
-    var kick=function(e){
-      if(e&&e.target&&e.target.closest&&e.target.closest('#music-toggle'))return; /* toggle handles itself */
-      start();
-    };
-    ['pointerdown','keydown','touchstart','scroll'].forEach(function(ev){addEventListener(ev,kick,{passive:true});});
-  }
+  var kick=function(e){
+    if(e&&e.target&&e.target.closest&&e.target.closest('#music-toggle'))return; /* toggle handles itself */
+    start();
+  };
+  ['pointerdown','keydown','touchstart','scroll'].forEach(function(ev){addEventListener(ev,kick,{passive:true});});
 })();
